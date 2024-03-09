@@ -15,11 +15,11 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3307,
-      username: 'root',
-      password: 'root',
-      database: 'quiz_vani_heroes',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT) ?? 3306,
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       entities: [UserEntity, QuestionEntity, AnswerEntity],
       synchronize: true,
     }),
